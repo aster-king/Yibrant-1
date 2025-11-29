@@ -1,38 +1,54 @@
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
-import { Sparkles, Zap, TrendingUp, Rocket } from "lucide-react";
+import { Sparkles, Video, Users, Megaphone, TrendingUp, Palette } from "lucide-react";
 
 const services = [
   {
-    icon: Sparkles,
-    title: "eye candy",
-    subtitle: "generative visuals",
-    description: "scroll-stopping visuals generated in milliseconds.",
+    icon: Users,
+    title: "ai influencers",
+    subtitle: "virtual brand ambassadors",
+    description: "create and manage AI-powered influencers that engage your audience 24/7.",
     color: "yellow",
     size: "large",
   },
   {
-    icon: Zap,
-    title: "words that sell",
-    subtitle: "llm copywriting",
-    description: "copy that converts better than dave (sorry, dave).",
+    icon: Palette,
+    title: "social media mastery",
+    subtitle: "ai content creation",
+    description: "endless engaging posts, stories, and content generated on-demand.",
+    color: "teal",
+    size: "medium",
+  },
+  {
+    icon: Video,
+    title: "video magic",
+    subtitle: "ai video editing",
+    description: "professional video content created and edited using cutting-edge AI.",
+    color: "coral",
+    size: "medium",
+  },
+  {
+    icon: Megaphone,
+    title: "smart ads",
+    subtitle: "ai-powered campaigns",
+    description: "data-driven advertisements that adapt and optimize in real-time.",
+    color: "yellow",
+    size: "medium",
+  },
+  {
+    icon: Sparkles,
+    title: "generative visuals",
+    subtitle: "ai art & design",
+    description: "stunning visuals and graphics generated from your brand vision.",
     color: "coral",
     size: "medium",
   },
   {
     icon: TrendingUp,
-    title: "the viral button",
-    subtitle: "growth hacking",
-    description: "math, not magic. we predict trends before they happen.",
+    title: "growth intelligence",
+    subtitle: "predictive analytics",
+    description: "AI-powered insights that predict trends before they go viral.",
     color: "teal",
-    size: "medium",
-  },
-  {
-    icon: Rocket,
-    title: "full stack chaos",
-    subtitle: "end-to-end campaigns",
-    description: "from concept to conversion in record time.",
-    color: "coral",
     size: "large",
   },
 ];
@@ -50,20 +66,20 @@ const Services = () => {
             SELECT_YOUR_WEAPON
           </div>
           <h1 className="text-7xl font-black mb-4">
-            what we <span className="gradient-text">ship</span>
+            ai-powered <span className="gradient-text">marketing</span>
           </h1>
           <p className="text-xl text-muted-foreground">
-            video game inventory style. pick your power-up.
+            generative AI solutions that transform your brand's growth.
           </p>
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[280px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px]">
           {services.map((service, i) => {
             const Icon = service.icon;
             const gridClass = service.size === "large" 
-              ? "md:col-span-2" 
-              : "md:col-span-1";
+              ? "lg:col-span-2" 
+              : "lg:col-span-1";
 
             return (
               <motion.div
@@ -110,10 +126,10 @@ const Services = () => {
         >
           <GlassCard className="max-w-2xl mx-auto">
             <h3 className="text-4xl font-black mb-4">
-              not sure what you need?
+              ready to accelerate?
             </h3>
             <p className="text-muted-foreground mb-6">
-              book a call. we'll figure it out together.
+              let's discuss how AI can transform your marketing strategy.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
