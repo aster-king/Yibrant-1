@@ -46,10 +46,10 @@ const Careers = () => {
             THE_LAB
           </div>
           <h1 className="text-7xl font-black mb-6 leading-tight">
-            quit your boring <span className="gradient-text">job</span>
+            join the future of <span className="gradient-text">growth</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-8">
-            we're looking for pirates, hackers, and artists. corporate refugees welcome.
+            work with passionate humans using cutting-edge AI to drive unprecedented results.
           </p>
           
           <motion.button
@@ -142,9 +142,9 @@ const Careers = () => {
               what it's really like
             </h3>
             <p className="text-lg text-muted-foreground mb-6">
-              we move fast. we break things. we fix them faster. 
-              no meetings about meetings. no corporate buzzwords. 
-              just shipping cool stuff with cool people.
+              we move fast and deliver results. 
+              collaborative environment where innovation thrives. 
+              join a team passionate about leveraging AI to create exceptional growth.
             </p>
             <div className="tech-label text-yibrant-yellow">
               CULTURE_FIT &gt; RESUME
