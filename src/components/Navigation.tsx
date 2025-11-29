@@ -1,8 +1,21 @@
 import { NavLink } from "@/components/NavLink";
 import { motion } from "framer-motion";
-import logo from "@/assets/logo.svg";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import logoDark from "@/assets/logo-dark.svg";
+import logoLight from "@/assets/logo-light.svg";
 
 export const Navigation = () => {
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
+  const logoSrc = mounted && currentTheme === "light" ? logoLight : logoDark;
+
   const links = [
     { to: "/", label: "home" },
     { to: "/services", label: "services" },
@@ -19,7 +32,7 @@ export const Navigation = () => {
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <NavLink to="/" className="flex items-center gap-3">
-          <img src={logo} alt="Yibrant" className="h-10 w-auto" />
+          <img src={logoSrc} alt="Yibrant" className="h-10 w-auto" />
         </NavLink>
 
         <div className="flex items-center gap-8">

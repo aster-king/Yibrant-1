@@ -41,7 +41,7 @@ const Home = () => {
           </h1>
 
           <p className="text-xl text-muted-foreground mb-8 max-w-lg">
-            your growth team is too slow. hire our robots.
+            human creativity meets AI precision. we help you grow faster than you ever imagined.
           </p>
 
           <div className="flex gap-4">
