@@ -25,15 +25,6 @@ const Home = () => {
           transition={{ duration: 0.8 }}
           className="flex-1 max-w-2xl"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="tech-label text-yibrant-yellow mb-4"
-          >
-            GEN_TIME: 0.4s
-          </motion.div>
-
           <h1 className="text-7xl md:text-8xl font-black mb-6 leading-none">
             we broke the
             <span className="block gradient-text">algorithm</span>

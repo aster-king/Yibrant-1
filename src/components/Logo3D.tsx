@@ -1,31 +1,57 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 export const Logo3D = () => {
-  const meshRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<THREE.Group>(null);
+  const spheresRef = useRef<THREE.Mesh[]>([]);
 
   useFrame((state) => {
-    if (!meshRef.current) return;
+    if (!groupRef.current) return;
     
-    // Gentle rotation
-    meshRef.current.rotation.y += 0.005;
+    // Rotate the entire group slowly
+    groupRef.current.rotation.y += 0.003;
     
-    // Float effect
-    meshRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.2;
+    // Animate individual spheres
+    spheresRef.current.forEach((sphere, i) => {
+      if (sphere) {
+        const time = state.clock.elapsedTime;
+        sphere.position.y = Math.sin(time + i) * 0.5;
+        sphere.rotation.x += 0.01;
+        sphere.rotation.y += 0.01;
+      }
+    });
   });
 
+  const colors = ["#FBBF24", "#F87171", "#34D399"];
+  const positions: [number, number, number][] = [
+    [0, 0, 0],
+    [2, 1, -1],
+    [-2, -1, 1],
+    [0, 2, -2],
+  ];
+
   return (
-    <mesh ref={meshRef}>
-      <torusGeometry args={[2, 0.8, 16, 100]} />
-      <meshStandardMaterial
-        color="#F87171"
-        metalness={0.8}
-        roughness={0.2}
-        emissive="#F87171"
-        emissiveIntensity={0.5}
-      />
-    </mesh>
+    <group ref={groupRef}>
+      {positions.map((position, i) => (
+        <mesh
+          key={i}
+          position={position}
+          ref={(el) => {
+            if (el) spheresRef.current[i] = el;
+          }}
+        >
+          <sphereGeometry args={[0.8, 32, 32]} />
+          <meshStandardMaterial
+            color={colors[i % colors.length]}
+            metalness={0.7}
+            roughness={0.3}
+            emissive={colors[i % colors.length]}
+            emissiveIntensity={0.4}
+          />
+        </mesh>
+      ))}
+    </group>
   );
 };
+
