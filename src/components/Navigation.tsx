@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import logoDark from "@/assets/logo-dark.svg";
 import logoLight from "@/assets/logo-light.svg";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Navigation = () => {
   const { theme, systemTheme } = useTheme();
@@ -35,7 +36,7 @@ export const Navigation = () => {
           <img src={logoSrc} alt="Yibrant" className="h-10 w-auto" />
         </NavLink>
 
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6">
           {links.map((link) => (
             <NavLink
               key={link.to}
@@ -47,6 +48,7 @@ export const Navigation = () => {
               {link.label}
             </NavLink>
           ))}
+          <ThemeToggle />
         </div>
       </div>
     </motion.nav>

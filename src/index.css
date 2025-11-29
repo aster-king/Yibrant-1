@@ -6,50 +6,92 @@
 
 @layer base {
   :root {
-    /* Core Colors - Deep Black Base */
-    --background: 0 0% 2%;
-    --foreground: 0 0% 98%;
+    /* Light Mode Colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
 
-    /* Brand Accents from Logo */
-    --yibrant-yellow: 43 97% 57%;     /* #FBBF24 - Optimism/Ideas */
-    --yibrant-coral: 4 86% 70%;       /* #F87171 - Urgency/CTAs */
-    --yibrant-teal: 159 62% 52%;      /* #34D399 - Growth/Success */
+    /* Brand Accents */
+    --yibrant-green: 142 54% 54%;      /* #51bb7a */
+    --yibrant-pink: 4 93% 76%;         /* #f58981 */
+    --yibrant-yellow: 45 100% 65%;     /* #ffd54f */
     
     /* Semantic Tokens */
-    --primary: var(--yibrant-coral);
-    --primary-foreground: 0 0% 2%;
+    --primary: var(--yibrant-pink);
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: var(--yibrant-teal);
-    --secondary-foreground: 0 0% 2%;
+    --secondary: var(--yibrant-green);
+    --secondary-foreground: 0 0% 100%;
 
     --accent: var(--yibrant-yellow);
-    --accent-foreground: 0 0% 2%;
+    --accent-foreground: 0 0% 10%;
 
-    --card: 0 0% 5%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: var(--yibrant-pink);
+
+    --radius: 1rem;
+
+    /* Glass Effect Variables */
+    --glass-background: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .dark {
+    /* Dark Mode Colors */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+
+    /* Brand Accents (same in dark mode) */
+    --yibrant-green: 142 54% 54%;
+    --yibrant-pink: 4 93% 76%;
+    --yibrant-yellow: 45 100% 65%;
+
+    /* Semantic Tokens */
+    --primary: var(--yibrant-pink);
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: var(--yibrant-green);
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: var(--yibrant-yellow);
+    --accent-foreground: 0 0% 5%;
+
+    --card: 0 0% 8%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 5%;
+    --popover: 0 0% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: var(--yibrant-coral);
-
-    --radius: 1rem;
+    --ring: var(--yibrant-pink);
 
     /* Glass Effect Variables */
-    --glass-background: rgba(255, 255, 255, 0.05);
+    --glass-background: rgba(10, 10, 10, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-
-    /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -87,15 +129,15 @@
 
   /* Neon Glow Effects */
   .glow-yellow {
-    box-shadow: 0 0 20px hsl(var(--yibrant-yellow) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--yibrant-yellow) / 0.4);
   }
 
-  .glow-coral {
-    box-shadow: 0 0 20px hsl(var(--yibrant-coral) / 0.3);
+  .glow-pink {
+    box-shadow: 0 0 20px hsl(var(--yibrant-pink) / 0.4);
   }
 
-  .glow-teal {
-    box-shadow: 0 0 20px hsl(var(--yibrant-teal) / 0.3);
+  .glow-green {
+    box-shadow: 0 0 20px hsl(var(--yibrant-green) / 0.4);
   }
 
   /* Tech Label Style */
@@ -107,8 +149,8 @@
   .gradient-text {
     background: linear-gradient(135deg, 
       hsl(var(--yibrant-yellow)), 
-      hsl(var(--yibrant-coral)), 
-      hsl(var(--yibrant-teal))
+      hsl(var(--yibrant-pink)), 
+      hsl(var(--yibrant-green))
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

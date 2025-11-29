@@ -42,7 +42,7 @@ const Careers = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-20 text-center max-w-3xl mx-auto"
         >
-          <div className="tech-label text-yibrant-coral mb-4">
+          <div className="tech-label text-yibrant-pink mb-4">
             THE_LAB
           </div>
           <h1 className="text-7xl font-black mb-6 leading-tight">
@@ -55,7 +55,7 @@ const Careers = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg glow-coral"
+            className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg glow-pink"
           >
             show us your work
           </motion.button>
@@ -103,7 +103,7 @@ const Careers = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <GlassCard className="flex items-center justify-between hover:glow-coral transition-all">
+                <GlassCard className="flex items-center justify-between hover:glow-pink transition-all">
                   <div>
                     <h3 className="text-2xl font-bold lowercase mb-1">
                       {role.title}
@@ -114,7 +114,7 @@ const Careers = () => {
                   </div>
                   
                   <div className="flex items-center gap-4">
-                    <span className="tech-label text-yibrant-teal">
+                    <span className="tech-label text-yibrant-green">
                       {role.type}
                     </span>
                     <motion.button

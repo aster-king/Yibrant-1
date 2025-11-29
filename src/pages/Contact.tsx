@@ -14,7 +14,7 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-16 text-center"
         >
-          <div className="tech-label text-yibrant-coral mb-4">
+          <div className="tech-label text-yibrant-pink mb-4">
             INITIALIZE_CONTACT
           </div>
           <h1 className="text-7xl font-black mb-4">
@@ -35,8 +35,8 @@ const Contact = () => {
               onClick={() => setSelectedOption("money")}
               className="cursor-pointer"
             >
-              <GlassCard className="h-full flex flex-col items-center justify-center p-12 hover:glow-coral transition-all">
-                <DollarSign className="w-20 h-20 text-yibrant-coral mb-6" />
+              <GlassCard className="h-full flex flex-col items-center justify-center p-12 hover:glow-pink transition-all">
+                <DollarSign className="w-20 h-20 text-yibrant-pink mb-6" />
                 <h3 className="text-3xl font-black mb-4 lowercase">
                   i have money
                 </h3>
@@ -139,7 +139,7 @@ const Contact = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg glow-coral flex items-center justify-center gap-2"
+                  className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg glow-pink flex items-center justify-center gap-2"
                 >
                   <Send className="w-5 h-5" />
                   send it
