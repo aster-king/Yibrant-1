@@ -1,21 +1,16 @@
 import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
-import { Logo3D } from "@/components/Logo3D";
+import { OrganicShape3D } from "@/components/OrganicShape3D";
 import { Suspense } from "react";
-import bgElement from "@/assets/bg-element.svg";
 
 const Home = () => {
   return (
-    <main className="min-h-screen pt-20 pb-20 relative overflow-hidden">
-      {/* Background Element */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <img 
-          src={bgElement} 
-          alt="" 
-          className="w-full h-full object-cover"
-        />
-      </div>
+    <main className="min-h-screen pt-20 pb-20 relative overflow-hidden bg-gradient-to-br from-background via-background to-yibrant-yellow/5">
+      {/* Decorative gradient blobs */}
+      <div className="absolute top-20 right-0 w-96 h-96 bg-yibrant-pink/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-0 w-96 h-96 bg-yibrant-green/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yibrant-yellow/5 rounded-full blur-3xl" />
 
       {/* Hero Section */}
       <section className="container mx-auto px-6 min-h-[calc(100vh-10rem)] flex items-center justify-between">
@@ -39,7 +34,7 @@ const Home = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg glow-coral"
+              className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg glow-pink"
             >
               start the reactor
             </motion.button>
@@ -54,21 +49,22 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* 3D Logo */}
+        {/* 3D Organic Shape */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 1 }}
-          className="hidden lg:block w-[500px] h-[500px]"
+          className="hidden lg:block w-[600px] h-[600px]"
         >
           <Canvas>
             <Suspense fallback={null}>
-              <PerspectiveCamera makeDefault position={[0, 0, 8]} />
-              <ambientLight intensity={0.5} />
-              <pointLight position={[10, 10, 10]} intensity={1} color="#F87171" />
-              <pointLight position={[-10, -10, -10]} intensity={0.5} color="#34D399" />
-              <Logo3D />
-              <OrbitControls enableZoom={false} autoRotate={false} />
+              <PerspectiveCamera makeDefault position={[0, 0, 10]} />
+              <ambientLight intensity={0.6} />
+              <pointLight position={[10, 10, 10]} intensity={1.5} color="#f58981" />
+              <pointLight position={[-10, -10, -10]} intensity={1} color="#51bb7a" />
+              <pointLight position={[0, 10, -10]} intensity={1} color="#ffd54f" />
+              <OrganicShape3D />
+              <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} enablePan={false} />
             </Suspense>
           </Canvas>
         </motion.div>
@@ -79,8 +75,8 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { value: "0.4s", label: "avg generation time", color: "yellow" },
-            { value: "847%", label: "roi for clients", color: "teal" },
-            { value: "∞", label: "creative possibilities", color: "coral" },
+            { value: "847%", label: "roi for clients", color: "green" },
+            { value: "∞", label: "creative possibilities", color: "pink" },
           ].map((stat, i) => (
             <motion.div
               key={i}

@@ -44,7 +44,7 @@ const Clients = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-16 text-center"
         >
-          <div className="tech-label text-yibrant-teal mb-4">
+          <div className="tech-label text-yibrant-green mb-4">
             THE_RECEIPTS
           </div>
           <h1 className="text-7xl font-black mb-4">
@@ -72,7 +72,7 @@ const Clients = () => {
               </div>
 
               <div>
-                <div className="tech-label text-yibrant-coral mb-3">
+                <div className="tech-label text-yibrant-pink mb-3">
                   THE RESULT
                 </div>
                 <p className="text-lg font-bold">
@@ -132,7 +132,7 @@ const Clients = () => {
                       </p>
                     </div>
                     
-                    <div className="tech-label text-yibrant-teal mt-4">
+                    <div className="tech-label text-yibrant-green mt-4">
                       +{Math.floor(Math.random() * 900 + 100)}% ROI
                     </div>
                   </div>

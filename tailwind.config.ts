@@ -49,8 +49,8 @@ export default {
         },
         yibrant: {
           yellow: "hsl(var(--yibrant-yellow))",
-          coral: "hsl(var(--yibrant-coral))",
-          teal: "hsl(var(--yibrant-teal))",
+          pink: "hsl(var(--yibrant-pink))",
+          green: "hsl(var(--yibrant-green))",
         },
       },
       fontFamily: {

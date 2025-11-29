@@ -16,7 +16,7 @@ const services = [
     title: "social media mastery",
     subtitle: "ai content creation",
     description: "endless engaging posts, stories, and content generated on-demand.",
-    color: "teal",
+    color: "green",
     size: "medium",
   },
   {
@@ -24,7 +24,7 @@ const services = [
     title: "video magic",
     subtitle: "ai video editing",
     description: "professional video content created and edited using cutting-edge AI.",
-    color: "coral",
+    color: "pink",
     size: "medium",
   },
   {
@@ -40,7 +40,7 @@ const services = [
     title: "generative visuals",
     subtitle: "ai art & design",
     description: "stunning visuals and graphics generated from your brand vision.",
-    color: "coral",
+    color: "pink",
     size: "medium",
   },
   {
@@ -48,7 +48,7 @@ const services = [
     title: "growth intelligence",
     subtitle: "predictive analytics",
     description: "AI-powered insights that predict trends before they go viral.",
-    color: "teal",
+    color: "green",
     size: "large",
   },
 ];
@@ -134,7 +134,7 @@ const Services = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold glow-coral"
+              className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold glow-pink"
             >
               let's talk
             </motion.button>
