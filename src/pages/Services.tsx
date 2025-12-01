@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
 import { Sparkles, Video, Users, Megaphone, TrendingUp, Palette } from "lucide-react";
+import { ParticlesBackground } from "@/components/ParticlesBackground";
 
 const services = [
   {
@@ -55,12 +56,13 @@ const services = [
 
 const Services = () => {
   return (
-    <main className="min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-6">
+    <main className="py-12 relative overflow-hidden">
+      <ParticlesBackground />
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16 text-center"
+          className="mb-8 text-center"
         >
           <div className="tech-label text-yibrant-yellow mb-4">
             SELECT_YOUR_WEAPON
@@ -122,7 +124,7 @@ const Services = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-20 text-center"
+          className="mt-10 text-center"
         >
           <GlassCard className="max-w-2xl mx-auto">
             <h3 className="text-4xl font-black mb-4">

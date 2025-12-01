@@ -1,39 +1,21 @@
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
-import { DollarSign, Lightbulb, Send } from "lucide-react";
-import { useState, useEffect } from "react";
-import { toast } from "sonner";
-import { useForm, ValidationError } from "@formspree/react";
+import { DollarSign, Lightbulb } from "lucide-react";
+import { useState } from "react";
+import { UnifiedForm } from "@/components/UnifiedForm";
+import { ParticlesBackground } from "@/components/ParticlesBackground";
 
 const Contact = () => {
   const [selectedOption, setSelectedOption] = useState<"money" | "idea" | null>(null);
 
-  // Use environment variable for Form ID, fallback to hardcoded ID if env not loaded yet
-  const formId = import.meta.env.VITE_FORMSPREE_FORM_ID || "xzzllqzv";
-  const [state, handleSubmit] = useForm(formId);
-
-  useEffect(() => {
-    if (state.succeeded) {
-      toast.success("Message sent successfully!", {
-        description: "We'll get back to you within 24 hours.",
-      });
-      // Optional: Reset selection or form state if needed
-      // setSelectedOption(null); 
-    }
-    if (state.errors) {
-      toast.error("Something went wrong.", {
-        description: "Please try again or email us directly.",
-      });
-    }
-  }, [state.succeeded, state.errors]);
-
   return (
-    <main className="min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-6">
+    <main className="py-12 relative overflow-hidden">
+      <ParticlesBackground />
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16 text-center"
+          className="mb-8 text-center"
         >
           <div className="tech-label text-yibrant-pink mb-4">
             INITIALIZE_CONTACT
@@ -106,79 +88,11 @@ const Contact = () => {
                 {selectedOption === "money" ? "project inquiry" : "brainstorm session"}
               </h2>
 
-              {/* Hidden input to categorize submission */}
-              <form className="space-y-6" onSubmit={handleSubmit}>
-                <input type="hidden" name="inquiry_type" value={selectedOption || ''} />
-
-                <div>
-                  <label className="tech-label block mb-2" htmlFor="name">
-                    your_name
-                  </label>
-                  <input
-                    id="name"
-                    name="name"
-                    required
-                    type="text"
-                    className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="john doe"
-                  />
-                  <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-sm mt-1" />
-                </div>
-
-                <div>
-                  <label className="tech-label block mb-2" htmlFor="email">
-                    email_address
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    required
-                    type="email"
-                    className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="john@example.com"
-                  />
-                  <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-sm mt-1" />
-                </div>
-
-                <div>
-                  <label className="tech-label block mb-2" htmlFor="message">
-                    {selectedOption === "money" ? "project_brief" : "your_idea"}
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={6}
-                    className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                    placeholder={selectedOption === "money"
-                      ? "tell us what you're building..."
-                      : "describe your wild idea..."}
-                  />
-                  <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-sm mt-1" />
-                </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  disabled={state.submitting}
-                  className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg glow-pink flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {state.submitting ? (
-                    "sending..."
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5" />
-                      send it
-                    </>
-                  )}
-                </motion.button>
-                {!formId && (
-                  <p className="text-xs text-center text-red-400 mt-4">
-                    * Form ID not configured. Please set VITE_FORMSPREE_FORM_ID.
-                  </p>
-                )}
-              </form>
+              <UnifiedForm
+                mode="enquiry"
+                defaultEnquiryType={selectedOption}
+                onSuccess={() => setSelectedOption(null)}
+              />
             </GlassCard>
 
             {/* Alternative Contact Methods */}

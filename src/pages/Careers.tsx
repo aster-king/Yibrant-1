@@ -2,12 +2,8 @@ import { motion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
 import { Clock, Rocket, Users, Code } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useState, useEffect } from "react";
-import { toast } from "sonner";
-import { useForm, ValidationError } from "@formspree/react";
+import { useState } from "react";
+import { UnifiedForm } from "@/components/UnifiedForm";
 
 const perks = [
   { icon: Clock, text: "no timesheets" },
@@ -54,84 +50,6 @@ const roles = [
   },
 ];
 
-const JobApplicationForm = ({ defaultRole = "", onSuccess }: { defaultRole?: string, onSuccess: () => void }) => {
-  // Use the main Formspree ID
-  const formId = import.meta.env.VITE_FORMSPREE_FORM_ID || "xzzllqzv";
-  const [state, handleSubmit] = useForm(formId);
-
-  useEffect(() => {
-    if (state.succeeded) {
-      toast.success("Application sent successfully!", {
-        description: "We'll review your portfolio and get back to you.",
-      });
-      onSuccess();
-    }
-    if (state.errors) {
-      toast.error("Something went wrong.", {
-        description: "Please try again or email us directly.",
-      });
-    }
-  }, [state.succeeded, state.errors, onSuccess]);
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-      <div className="grid gap-2">
-        <Label htmlFor="role">Role Interest</Label>
-        <Input
-          id="role"
-          name="role"
-          defaultValue={defaultRole}
-          placeholder="e.g. Video Editor"
-          className="bg-background/50"
-          required
-        />
-        <ValidationError prefix="Role" field="role" errors={state.errors} className="text-red-500 text-sm" />
-      </div>
-
-      <div className="grid gap-2">
-        <Label htmlFor="name">Full Name</Label>
-        <Input id="name" name="name" required placeholder="John Doe" className="bg-background/50" />
-        <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-sm" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" type="email" required placeholder="john@example.com" className="bg-background/50" />
-        <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-sm" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="portfolio">Portfolio URL</Label>
-        <Input id="portfolio" name="portfolio" type="url" required placeholder="https://dribbble.com/johndoe" className="bg-background/50" />
-        <ValidationError prefix="Portfolio" field="portfolio" errors={state.errors} className="text-red-500 text-sm" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="resume">Resume (PDF)</Label>
-        {/* Note: File uploads require a paid Formspree plan or specific configuration. 
-            For free tier, this might just send the filename unless configured. */}
-        <Input id="resume" name="resume" type="file" accept=".pdf" required className="bg-background/50 cursor-pointer" />
-        <ValidationError prefix="Resume" field="resume" errors={state.errors} className="text-red-500 text-sm" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="cover">Why you?</Label>
-        <textarea
-          id="cover"
-          name="cover"
-          className="flex min-h-[80px] w-full rounded-md border border-input bg-background/50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-          placeholder="Tell us something interesting..."
-        />
-        <ValidationError prefix="Cover Letter" field="cover" errors={state.errors} className="text-red-500 text-sm" />
-      </div>
-      <Button type="submit" className="w-full font-bold" disabled={state.submitting}>
-        {state.submitting ? "Sending..." : "Submit Application"}
-      </Button>
-      {!formId && (
-        <p className="text-xs text-center text-red-400 mt-2">
-          * Form ID not configured.
-        </p>
-      )}
-    </form>
-  );
-};
-
 const Careers = () => {
   const [openDialog, setOpenDialog] = useState<string | null>(null);
   const [generalAppOpen, setGeneralAppOpen] = useState(false);
@@ -169,7 +87,7 @@ const Careers = () => {
               <DialogHeader>
                 <DialogTitle className="text-2xl font-bold lowercase">join the team</DialogTitle>
               </DialogHeader>
-              <JobApplicationForm onSuccess={() => setGeneralAppOpen(false)} />
+              <UnifiedForm mode="job" onSuccess={() => setGeneralAppOpen(false)} />
             </DialogContent>
           </Dialog>
         </motion.div>
@@ -245,7 +163,7 @@ const Careers = () => {
                         <DialogHeader>
                           <DialogTitle className="text-2xl font-bold lowercase">apply for {role.title}</DialogTitle>
                         </DialogHeader>
-                        <JobApplicationForm defaultRole={role.title} onSuccess={() => setOpenDialog(null)} />
+                        <UnifiedForm mode="job" defaultRole={role.title} onSuccess={() => setOpenDialog(null)} />
                       </DialogContent>
                     </Dialog>
                   </div>

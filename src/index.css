@@ -10,11 +10,12 @@
     --background: 0 0% 100%;
     --foreground: 0 0% 10%;
 
-    /* Brand Accents */
-    --yibrant-green: 142 54% 54%;      /* #51bb7a */
-    --yibrant-pink: 4 93% 76%;         /* #f58981 */
-    --yibrant-yellow: 45 100% 40%;     /* #cc9900 - Darker for visibility */
-    
+    /* Brand Accents - Darker & More Saturated */
+    --yibrant-green: 142 70% 45%;
+    --yibrant-pink: 3 86% 64%;
+    /* #f15c55 */
+    --yibrant-yellow: 45 100% 45%;
+
     /* Semantic Tokens */
     --primary: var(--yibrant-pink);
     --primary-foreground: 0 0% 100%;
@@ -51,7 +52,7 @@
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .dark {
     /* Dark Mode Colors */
     --background: 0 0% 5%;
@@ -59,7 +60,7 @@
 
     /* Brand Accents (same in dark mode) */
     --yibrant-green: 142 54% 54%;
-    --yibrant-pink: 4 93% 76%;
+    --yibrant-pink: 3 86% 64%;
     --yibrant-yellow: 45 100% 65%;
 
     /* Semantic Tokens */
@@ -100,23 +101,35 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Inter', sans-serif;
     font-weight: 900;
     letter-spacing: -0.02em;
   }
 
-  code, pre, .mono {
+  code,
+  pre,
+  .mono {
     font-family: 'JetBrains Mono', monospace;
   }
 }
 
 @layer components {
+
   /* Glassmorphism Card */
   .glass-card {
     background: var(--glass-background);
@@ -147,11 +160,10 @@
 
   /* Gradient Text */
   .gradient-text {
-    background: linear-gradient(135deg, 
-      hsl(var(--yibrant-yellow)), 
-      hsl(var(--yibrant-pink)), 
-      hsl(var(--yibrant-green))
-    );
+    background: linear-gradient(135deg,
+        hsl(var(--yibrant-yellow)),
+        hsl(var(--yibrant-pink)),
+        hsl(var(--yibrant-green)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -159,11 +171,12 @@
 }
 
 @layer utilities {
+
   /* Hide Scrollbar */
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
-  
+
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;

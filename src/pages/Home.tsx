@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 import { KineticBallsAnimation } from "@/components/KineticBallsAnimation";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
 import Services from "./Services";
-import Careers from "./Careers";
 import Contact from "./Contact";
+import { UnifiedForm } from "@/components/UnifiedForm";
+import { GlassCard } from "@/components/GlassCard";
 
 const Home = () => {
     const scrollToSection = (id: string) => {
@@ -15,16 +16,16 @@ const Home = () => {
 
     return (
         <div id="home">
-            <main className="min-h-[75vh] pt-16 pb-0 relative overflow-hidden bg-gradient-to-br from-background via-background to-yibrant-yellow/5">
-                <ParticlesBackground />
+            <main className="min-h-[60vh] pt-24 pb-0 relative overflow-hidden bg-gradient-to-br from-background via-background to-yibrant-yellow/5">
+
                 {/* Decorative gradient blobs */}
                 <div className="absolute top-20 right-0 w-96 h-96 bg-yibrant-pink/10 rounded-full blur-3xl" />
                 <div className="absolute bottom-20 left-0 w-96 h-96 bg-yibrant-green/10 rounded-full blur-3xl" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yibrant-yellow/5 rounded-full blur-3xl" />
 
                 {/* Unified Hero Container */}
-                <div className="container mx-auto px-6 pt-4 relative">
-                    <div className="flex flex-col md:flex-row items-stretch min-h-[60vh]">
+                <div className="container mx-auto px-6 pt-4 relative z-10">
+                    <div className="flex flex-col md:flex-row items-stretch min-h-[40vh]">
                         {/* Left Segment: Text */}
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
@@ -32,10 +33,11 @@ const Home = () => {
                             transition={{ duration: 0.8 }}
                             className="w-full md:w-[50%] relative p-8 shrink-0 flex flex-col justify-center text-center md:text-left"
                         >
-                            <h1 className="text-5xl md:text-7xl font-black mb-6 leading-none">
-                                we broke the
-                                <span className="block gradient-text">algorithm</span>
-                                so you don't have to.
+                            <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                                <span className="block">we broke the</span>
+                                <span className="block gradient-text pb-2 text-[1.15em]">algorithm</span>
+                                <span className="block">so you don't</span>
+                                <span className="block">have to</span>
                             </h1>
 
                             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg mx-auto md:mx-0">
@@ -78,19 +80,31 @@ const Home = () => {
                 </div>
 
                 {/* Smooth transition gradient */}
-                <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
             </main>
 
             <section id="services">
                 <Services />
             </section>
 
-            <section id="careers">
-                <Careers />
-            </section>
-
             <section id="contact">
                 <Contact />
+            </section>
+
+            <section id="simple-contact" className="py-10 container mx-auto px-6">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="max-w-2xl mx-auto"
+                >
+                    <GlassCard className="p-8">
+                        <h2 className="text-3xl font-black mb-6 text-center lowercase">
+                            get in touch
+                        </h2>
+                        <UnifiedForm mode="enquiry" hideEnquiryType={true} />
+                    </GlassCard>
+                </motion.div>
             </section>
         </div>
     );

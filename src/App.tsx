@@ -8,6 +8,7 @@ import Navigation from "@/components/Navigation";
 import { Ticker } from "@/components/Ticker";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import JoinUs from "./pages/JoinUs";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
             <Navigation />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/join" element={<JoinUs />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Ticker />
