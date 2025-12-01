@@ -27,7 +27,7 @@ export const ParticlesBackground = () => {
                     value: "transparent",
                 },
             },
-            fpsLimit: 120,
+            fpsLimit: 60,
             interactivity: {
                 events: {
                     onClick: {
@@ -77,7 +77,7 @@ export const ParticlesBackground = () => {
                         enable: true,
                         area: 800,
                     },
-                    value: 80,
+                    value: 50,
                 },
                 opacity: {
                     value: 0.15,
@@ -89,7 +89,7 @@ export const ParticlesBackground = () => {
                     value: { min: 0.5, max: 1.5 },
                 },
             },
-            detectRetina: true,
+            detectRetina: false,
         }),
         [resolvedTheme],
     );
