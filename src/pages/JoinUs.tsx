@@ -59,7 +59,7 @@ const JoinUs = () => {
     return (
         <main className="min-h-screen pt-32 pb-20 relative overflow-hidden">
             <ParticlesBackground />
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-6 relative z-10">
                 {/* Hero */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

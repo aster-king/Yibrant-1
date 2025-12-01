@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
 import { Sparkles, Video, Users, Megaphone, TrendingUp, Palette } from "lucide-react";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { UnifiedForm } from "@/components/UnifiedForm";
 
 const services = [
   {
@@ -92,28 +94,40 @@ const Services = () => {
                 transition={{ delay: i * 0.1 }}
                 className={gridClass}
               >
-                <GlassCard className="h-full flex flex-col justify-between relative overflow-hidden group">
-                  <div>
-                    <div className={`inline-flex p-3 rounded-xl bg-yibrant-${service.color}/10 mb-4`}>
-                      <Icon className={`w-8 h-8 text-yibrant-${service.color}`} />
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div className="h-full cursor-pointer">
+                      <GlassCard className="h-full flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] transition-transform duration-300">
+                        <div>
+                          <div className={`inline-flex p-3 rounded-xl bg-yibrant-${service.color}/10 mb-4`}>
+                            <Icon className={`w-8 h-8 text-yibrant-${service.color}`} />
+                          </div>
+
+                          <h3 className="text-3xl font-black mb-2 lowercase">
+                            {service.title}
+                          </h3>
+
+                          <div className="tech-label text-yibrant-yellow mb-4">
+                            {service.subtitle}
+                          </div>
+
+                          <p className="text-muted-foreground">
+                            {service.description}
+                          </p>
+                        </div>
+
+                        {/* Hover Glow Effect */}
+                        <div className={`absolute inset-0 bg-gradient-to-br from-yibrant-${service.color}/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`} />
+                      </GlassCard>
                     </div>
-
-                    <h3 className="text-3xl font-black mb-2 lowercase">
-                      {service.title}
-                    </h3>
-
-                    <div className="tech-label text-yibrant-yellow mb-4">
-                      {service.subtitle}
-                    </div>
-
-                    <p className="text-muted-foreground">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* Hover Glow Effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-br from-yibrant-${service.color}/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`} />
-                </GlassCard>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px] bg-background/95 backdrop-blur-xl border-white/10">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl font-bold lowercase">enquire about {service.title}</DialogTitle>
+                    </DialogHeader>
+                    <UnifiedForm mode="enquiry" defaultService={service.title} />
+                  </DialogContent>
+                </Dialog>
               </motion.div>
             );
           })}

@@ -7,7 +7,6 @@ import { toast } from "sonner";
 import {
   getCountries,
   getCountryCallingCode,
-  isValidPhoneNumber,
 } from "react-phone-number-input/input";
 import en from "react-phone-number-input/locale/en";
 import { Button } from "@/components/ui/button";
@@ -83,17 +82,9 @@ const formSchema = z.object({
   country: z.string().min(1, {
     message: "Please select a country.",
   }),
-  mobile: z.string().refine(
-    (value) => {
-      if (!value) return true;
-      return isValidPhoneNumber(value);
-    },
-    {
-      message: "Please enter a valid phone number.",
-    },
-  ),
+  mobile: z.string().optional(),
   role: z.string().optional(),
-  portfolio: z.string().url({ message: "Please enter a valid URL." }).optional().or(z.literal("")),
+  portfolio: z.string().optional(),
   resume: z.any().optional(),
   cover: z.string().optional(),
   enquiry_type: z.enum(["money", "idea", "general"]).optional(),
@@ -105,6 +96,7 @@ type FormValues = z.infer<typeof formSchema>;
 interface UnifiedFormProps {
   mode: "job" | "enquiry";
   defaultRole?: string;
+  defaultService?: string;
   defaultEnquiryType?: "money" | "idea" | "general";
   hideEnquiryType?: boolean;
   onSuccess?: () => void;
@@ -114,6 +106,7 @@ interface UnifiedFormProps {
 export function UnifiedForm({
   mode,
   defaultRole,
+  defaultService,
   defaultEnquiryType,
   hideEnquiryType = false,
   onSuccess,
@@ -137,7 +130,7 @@ export function UnifiedForm({
       portfolio: "",
       cover: "",
       enquiry_type: defaultEnquiryType || (hideEnquiryType ? "general" : undefined),
-      message: "",
+      message: defaultService ? `I am interested in ${defaultService}...` : "",
     },
   });
 
@@ -179,6 +172,13 @@ export function UnifiedForm({
         className={cn("space-y-4", className)}
       >
         <input type="hidden" {...form.register("mode")} value={mode} />
+
+        {mode === "enquiry" && defaultService && (
+          <div className="space-y-2">
+            <FormLabel>Service Interest</FormLabel>
+            <Input value={defaultService} readOnly className="bg-background/50 opacity-70" />
+          </div>
+        )}
 
         {mode === "enquiry" && !hideEnquiryType && (
           <FormField
