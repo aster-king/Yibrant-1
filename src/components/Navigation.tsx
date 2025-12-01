@@ -39,17 +39,13 @@ const Navigation = () => {
           const element = document.getElementById(link.to);
           if (element) {
             element.scrollIntoView({ behavior: "smooth" });
-          } else if (link.to === "home") {
-            window.scrollTo({ top: 0, behavior: "smooth" });
           }
-        }, 300); // Increased timeout slightly to ensure page load
+        }, 100);
       } else {
         // Already on home page
         const element = document.getElementById(link.to);
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
-        } else if (link.to === "home") {
-          window.scrollTo({ top: 0, behavior: "smooth" });
         }
       }
     }

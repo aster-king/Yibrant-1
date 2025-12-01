@@ -97,9 +97,15 @@ const JoinUs = () => {
 
                 {/* Perks Grid */}
                 <div className="mb-20">
-                    <h2 className="text-4xl font-black mb-8 text-center">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="text-4xl font-black mb-8 text-center"
+                    >
                         the perks
-                    </h2>
+                    </motion.h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {perks.map((perk, i) => {

@@ -105,6 +105,11 @@
     scroll-behavior: smooth;
   }
 
+  section,
+  #home {
+    scroll-margin-top: 100px;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;

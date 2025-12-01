@@ -5,8 +5,11 @@ import Services from "./Services";
 import Contact from "./Contact";
 import { UnifiedForm } from "@/components/UnifiedForm";
 import { GlassCard } from "@/components/GlassCard";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Home = () => {
+    const isMobile = useIsMobile();
+
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
@@ -66,16 +69,18 @@ const Home = () => {
                         </motion.div>
 
                         {/* Right Segment: Kinetic Balls - Hidden on Mobile */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.4, duration: 1 }}
-                            className="hidden md:flex w-[50%] relative items-center justify-center"
-                        >
-                            <div className="w-[400px] h-[400px] overflow-hidden">
-                                <KineticBallsAnimation />
-                            </div>
-                        </motion.div>
+                        {!isMobile && (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.4, duration: 1 }}
+                                className="hidden md:flex w-[50%] relative items-center justify-center"
+                            >
+                                <div className="w-[400px] h-[400px] overflow-hidden">
+                                    <KineticBallsAnimation />
+                                </div>
+                            </motion.div>
+                        )}
                     </div>
                 </div>
 

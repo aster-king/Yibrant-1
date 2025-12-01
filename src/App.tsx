@@ -6,9 +6,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import Navigation from "@/components/Navigation";
 import { Ticker } from "@/components/Ticker";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
-import JoinUs from "./pages/JoinUs";
+import { lazy, Suspense } from "react";
+
+const Home = lazy(() => import("./pages/Home"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const JoinUs = lazy(() => import("./pages/JoinUs"));
 
 const queryClient = new QueryClient();
 
@@ -21,11 +23,13 @@ const App = () => (
         <BrowserRouter>
           <div className="min-h-screen bg-background text-foreground">
             <Navigation />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/join" element={<JoinUs />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/join" element={<JoinUs />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
             <Ticker />
           </div>
         </BrowserRouter>
