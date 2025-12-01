@@ -77,8 +77,8 @@ const Services = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px]">
           {services.map((service, i) => {
             const Icon = service.icon;
-            const gridClass = service.size === "large" 
-              ? "lg:col-span-2" 
+            const gridClass = service.size === "large"
+              ? "lg:col-span-2"
               : "lg:col-span-1";
 
             return (
@@ -95,15 +95,15 @@ const Services = () => {
                     <div className={`inline-flex p-3 rounded-xl bg-yibrant-${service.color}/10 mb-4`}>
                       <Icon className={`w-8 h-8 text-yibrant-${service.color}`} />
                     </div>
-                    
+
                     <h3 className="text-3xl font-black mb-2 lowercase">
                       {service.title}
                     </h3>
-                    
+
                     <div className="tech-label text-yibrant-yellow mb-4">
                       {service.subtitle}
                     </div>
-                    
+
                     <p className="text-muted-foreground">
                       {service.description}
                     </p>
@@ -134,6 +134,7 @@ const Services = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold glow-pink"
             >
               let's talk

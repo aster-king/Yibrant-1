@@ -1,10 +1,31 @@
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
 import { DollarSign, Lightbulb, Send } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "sonner";
+import { useForm, ValidationError } from "@formspree/react";
 
 const Contact = () => {
   const [selectedOption, setSelectedOption] = useState<"money" | "idea" | null>(null);
+
+  // Use environment variable for Form ID, fallback to hardcoded ID if env not loaded yet
+  const formId = import.meta.env.VITE_FORMSPREE_FORM_ID || "xzzllqzv";
+  const [state, handleSubmit] = useForm(formId);
+
+  useEffect(() => {
+    if (state.succeeded) {
+      toast.success("Message sent successfully!", {
+        description: "We'll get back to you within 24 hours.",
+      });
+      // Optional: Reset selection or form state if needed
+      // setSelectedOption(null); 
+    }
+    if (state.errors) {
+      toast.error("Something went wrong.", {
+        description: "Please try again or email us directly.",
+      });
+    }
+  }, [state.succeeded, state.errors]);
 
   return (
     <main className="min-h-screen pt-32 pb-20">
@@ -85,65 +106,78 @@ const Contact = () => {
                 {selectedOption === "money" ? "project inquiry" : "brainstorm session"}
               </h2>
 
-              <form className="space-y-6">
+              {/* Hidden input to categorize submission */}
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                <input type="hidden" name="inquiry_type" value={selectedOption || ''} />
+
                 <div>
-                  <label className="tech-label block mb-2">
+                  <label className="tech-label block mb-2" htmlFor="name">
                     your_name
                   </label>
                   <input
+                    id="name"
+                    name="name"
+                    required
                     type="text"
                     className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="john doe"
                   />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-sm mt-1" />
                 </div>
 
                 <div>
-                  <label className="tech-label block mb-2">
+                  <label className="tech-label block mb-2" htmlFor="email">
                     email_address
                   </label>
                   <input
+                    id="email"
+                    name="email"
+                    required
                     type="email"
                     className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="john@example.com"
                   />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-sm mt-1" />
                 </div>
 
                 <div>
-                  <label className="tech-label block mb-2">
+                  <label className="tech-label block mb-2" htmlFor="message">
                     {selectedOption === "money" ? "project_brief" : "your_idea"}
                   </label>
                   <textarea
+                    id="message"
+                    name="message"
+                    required
                     rows={6}
                     className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                    placeholder={selectedOption === "money" 
+                    placeholder={selectedOption === "money"
                       ? "tell us what you're building..."
                       : "describe your wild idea..."}
                   />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-sm mt-1" />
                 </div>
-
-                {selectedOption === "money" && (
-                  <div>
-                    <label className="tech-label block mb-2">
-                      budget_range
-                    </label>
-                    <select className="w-full px-4 py-3 bg-background/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                      <option>$5k - $10k</option>
-                      <option>$10k - $25k</option>
-                      <option>$25k - $50k</option>
-                      <option>$50k+</option>
-                    </select>
-                  </div>
-                )}
 
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg glow-pink flex items-center justify-center gap-2"
+                  disabled={state.submitting}
+                  className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg glow-pink flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-5 h-5" />
-                  send it
+                  {state.submitting ? (
+                    "sending..."
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      send it
+                    </>
+                  )}
                 </motion.button>
+                {!formId && (
+                  <p className="text-xs text-center text-red-400 mt-4">
+                    * Form ID not configured. Please set VITE_FORMSPREE_FORM_ID.
+                  </p>
+                )}
               </form>
             </GlassCard>
 
@@ -153,13 +187,13 @@ const Contact = () => {
                 OR_SLIDE_INTO_OUR_DMS
               </p>
               <div className="flex justify-center gap-6">
-                <a href="#" className="text-primary hover:underline">
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                   twitter
                 </a>
-                <a href="#" className="text-primary hover:underline">
+                <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                   discord
                 </a>
-                <a href="#" className="text-primary hover:underline">
+                <a href="mailto:hello@yibrant.com" className="text-primary hover:underline">
                   email
                 </a>
               </div>

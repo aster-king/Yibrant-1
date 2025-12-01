@@ -13,7 +13,7 @@
     /* Brand Accents */
     --yibrant-green: 142 54% 54%;      /* #51bb7a */
     --yibrant-pink: 4 93% 76%;         /* #f58981 */
-    --yibrant-yellow: 45 100% 65%;     /* #ffd54f */
+    --yibrant-yellow: 45 100% 40%;     /* #cc9900 - Darker for visibility */
     
     /* Semantic Tokens */
     --primary: var(--yibrant-pink);
